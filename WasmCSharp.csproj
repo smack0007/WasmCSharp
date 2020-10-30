@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <WasmSDKPath>$(MSBuildThisFileDirectory)../mono-wasm</WasmSDKPath>
+  </PropertyGroup>
+
+  <Target Name="PackageWasm" AfterTargets="Build">
+    <Exec Command="$(WasmSDKPath)/packager.exe --copy=always --out=./publish --asset=./index.html ./bin/Debug/netcoreapp3.1/WasmCSharp.dll" />
+  </Target>
+
+</Project>
