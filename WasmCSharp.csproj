@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,9 +6,31 @@
 
     <WasmSDKPath>$(MSBuildThisFileDirectory)../mono-wasm</WasmSDKPath>
   </PropertyGroup>
-
+  
   <Target Name="PackageWasm" AfterTargets="Build">
+    <!--
+      Clean up. serve.cmd is running just clean up the files 
+    that are produced by the packager. -->
+    <RemoveDir Directories="publish/managed" />
+    <Delete Files="publish/*" />
+  
     <Exec Command="$(WasmSDKPath)/packager.exe --copy=always --out=./publish --asset=./index.html ./bin/Debug/netcoreapp3.1/WasmCSharp.dll" />
   </Target>
+
+  <ItemGroup>
+    <Reference Include="WebAssembly.Bindings">
+      <HintPath>$(WasmSDKPath)/framework/WebAssembly.Bindings.dll</HintPath>
+    </Reference>
+  
+    <Reference Include="WebAssembly.Net.WebSockets">
+      <HintPath>$(WasmSDKPath)/framework/WebAssembly.Net.WebSockets.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Remove="publish/**" />
+    <EmbeddedResource Remove="publish/**" />
+    <None Remove="publish/**" />
+  </ItemGroup>
 
 </Project>

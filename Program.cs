@@ -1,4 +1,5 @@
 ﻿using System;
+using WebAssembly;
 
 namespace WasmCSharp
 {
@@ -12,6 +13,8 @@ namespace WasmCSharp
         static void WasmMain()
         {
             Console.WriteLine("Hello World from WASM!");
+
+            Runtime.InvokeJS("sayHello();");
         }
     }
 }
