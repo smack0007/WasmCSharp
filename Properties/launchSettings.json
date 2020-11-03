@@ -1,7 +1,9 @@
 {
   "profiles": {
     "WasmCSharp": {
-      "commandName": "Executable"
+      "commandName": "Executable",
+      "executablePath": "dotnet-serve",
+      "commandLineArgs": "-d \"../../../publish\" -p 8080 -o"
     }
   }
 }
