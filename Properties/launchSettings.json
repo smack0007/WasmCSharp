@@ -3,7 +3,7 @@
     "WasmCSharp": {
       "commandName": "Executable",
       "executablePath": "dotnet-serve",
-      "commandLineArgs": "-d \"../../../publish\" -p 8080 -o"
+      "commandLineArgs": "-d \"../../../publish\" -p 8080"
     }
   }
 }
